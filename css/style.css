@@ -1,0 +1,121 @@
+:root{
+    --azul: rgb(84, 158, 168);
+    --azul-escuro: rgb(0, 73, 95);
+    --cinza: #EDF0F7;
+    --cinza-escuro: #e0e0e0;
+}
+
+/* RESET
+----------------------------------------- */
+* {
+    padding: 0;
+    margin: 0;
+}
+
+
+/* GERAIS
+----------------------------------------- */
+html{
+    font-size: 10px;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+
+}
+
+body {
+    background: url("../img/bg-people.png") no-repeat;
+
+    font-size: 2rem;
+    color: white;
+}
+
+/* Botao option */
+.option{
+    background: var(--azul);
+
+    border-radius: .8rem;
+
+    margin: 0 3rem;
+    padding: 2rem 5rem;
+
+    text-align: center;
+    text-transform: uppercase;
+
+    cursor: pointer;
+}
+.option:hover, .option.inativo{
+    background: white;
+    color: var(--azul);
+}
+.list-option{
+    padding: 4rem 12rem;
+    cursor: pointer;
+}
+
+.list-option:last-child{
+    border-bottom-right-radius: 50rem;
+    border-top-right-radius: 50rem;
+}
+.list-option:first-child{
+    border-bottom-left-radius: 50rem;
+    border-top-left-radius: 50rem;
+}
+.list-option:hover{
+    background: var(--cinza-escuro);
+    color: var(--azul);
+}
+
+
+/* HEADER
+----------------------------------------- */
+header{
+    width: 95%;
+    display: flex;
+    padding: 0 2%;
+}
+
+.logo{
+    background: var(--azul);
+    border-bottom-left-radius: 2rem;
+    border-bottom-right-radius: 2rem;
+}
+.logo img{
+    padding: 2rem;
+    width: 7rem;
+    
+}
+
+
+/* CONTEUDO
+----------------------------------------- */
+.content{
+    width: 90%;
+    height: 50rem;
+
+    padding-top: 3rem;
+    margin: auto;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+}
+
+/* Lista da Navegação */
+#nav{
+    margin: auto;
+    display: flex;
+    justify-content: center;
+}
+
+/* Lista Opções / Planilha */
+#list{
+    margin-top: 5rem; 
+    display: flex;
+    justify-content: space-around;
+    background: var(--cinza);
+
+    text-transform: uppercase;
+    color: var(--azul-escuro);
+
+    border-radius: 100rem;
+
+}
