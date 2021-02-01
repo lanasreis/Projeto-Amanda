@@ -1,17 +1,84 @@
-db.title1.forEach(title1 => {
-    console.log(title1.title);
-    
-    let title2Fk = db.title2.filter(title2 => title2.fk == title1.id);
-    title2Fk.forEach(title2 => {
-        console.log(`--> ${title2.title}`)
-    
-        let title3Fk = db.title3.filter(title3 => title3.fk == title2.id);
-        title3Fk.forEach(title3 => {
-            console.log(`-------> ${title3.title}`)
-    
-            let descriptionFk = db.description.filter(desc => desc.fk == title3.id);
-            descriptionFk.forEach(desc => console.log(desc.script));
-        })
+const nav = document.getElementById("nav");
+const list = document.getElementById("list");
+const content = list.parentNode;
+
+function inicio(){
+
+    nav.innerHTML = '';
+    preencheList(db[0], 0);
+}
+
+function preencheList(table, id){
+    content.className = 'content'
+    list.innerHTML="";
+
+    table.forEach(item => {
+        let divList = document.createElement('div');
+        divList.className = "list-option";
+        divList.dataset.id = item.id;
+        divList.dataset.ta = item.ta;
+
+
+        divList.onclick = () => {
+            preencheNav(item.title, id);
+            console.log(id, db.length)
+            if((id + 1) >= db.length-1){
+                preenchePlanilha(db[id + 1].filter(i => i.ta == item.id))
+            }
+            else{
+                preencheList( db[id + 1].filter(i => i.ta == item.id) , id+1)
+            }
+        }
+
+        divList.innerText = item.title;
+
+        list.appendChild(divList)
+
+    })
+}
+
+function preencheNav(title, id){
+    content.className = 'content'
+    let childsNav = nav.childNodes;
+    childsNav.forEach(child => {
+        child.className = 'option inativo'
     })
 
-});
+    let divNav = document.createElement('div');
+    divNav.className = 'option';
+    divNav.innerText = title;
+    divNav.dataset.tbAtual = id;
+
+    divNav.onclick = () => {
+        while(childsNav[id]){
+            nav.removeChild(childsNav[id])
+        }
+        if(childsNav.length > 0){
+            childsNav[childsNav.length-1].className = 'option';
+        }
+        preencheList(db[id], id);
+    }
+
+    nav.appendChild(divNav);
+
+}
+
+function preenchePlanilha(listScript){
+    content.className = 'content'
+    list.innerHTML = "";
+
+    listScript.forEach(ls => {
+        let divScript = document.createElement("div");
+        divScript.innerText = ls.script;
+        divScript.className = 'script';
+        list.parentNode.className = 'content planilha';
+/*
+        let divTable = document.createElement("table");
+        let divTHead = document.createElement("thead");
+        let divTBody = document.createElement("tbody");
+        let th
+  */  
+        list.appendChild(divScript)
+        
+    })
+}
